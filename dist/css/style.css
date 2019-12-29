@@ -1,0 +1,763 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+    scroll-behavior: smooth;
+}
+
+@media only screen and (min-width: 1900px) {
+    html {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    html {
+        font-size: 9px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    html {
+        font-size: 8px;
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+    html {
+        font-size: 7px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    html {
+        font-size: 8px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    html {
+        font-size: 7px;
+    }
+}
+@media only screen and (max-width: 350px) {
+    html {
+        font-size: 6px;
+    }
+}
+
+body {
+    font-family: 'Minion Pro', Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+header {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.95), rgba(12, 12, 12, 0.6)), url('../../img/hulk.jpg') no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 80rem;
+    padding: 8rem;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+
+.heading-primary {
+    font-size: 126px;
+    font-weight: 500;
+    letter-spacing: 0.3rem;
+}
+
+.heading-secondary {
+    font-size: 48px;
+}
+
+.heading-tertiary {
+    font-size: 36px;
+}
+
+.ticketBtn {
+    font-size: 1.6rem;
+    color: white;
+    padding: 10px 35px;
+    border: 2px solid #F7FF0E;
+    font-weight: bold;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+.ticketBtn:hover {
+    background-color: rgb(150, 115, 3);
+}
+
+.leftContent {
+    width: 50%;
+    float: left;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@media only screen and (max-width: 1000px) {
+    .leftContent {
+        float: none;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.leftText__the {
+    margin-left: 40px;
+    margin-bottom: -10px;
+}
+
+.leftText__crumbles {
+    margin-left: 150px;
+    margin-top: -30px;
+}
+
+.rightContent {
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    float: right;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+@media only screen and (max-width: 1000px) {
+    .rightContent {
+        display: none;
+    }
+}
+
+.redText {
+    color: #C93800;
+}
+
+.browny {
+    color: #D1B799;
+}
+
+.logo {
+    width: 100px;
+    height: 36px;
+}
+
+.flow {
+    text-align: center;
+    position: absolute;
+    bottom: 10%;
+    right: 20%;
+}
+
+.downArrow {
+    height: 35px;
+    -webkit-filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(150deg) brightness(101%) contrast(110%);
+    filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(150deg) brightness(101%) contrast(110%);
+    animation: moveUpAndDown 2s infinite;
+    -webkit-animation: moveUpAndDown 2s infinite;
+}
+
+@-webkit-keyframes moveUpAndDown {
+    0% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+
+    40% {
+        -webkit-transform: translateY(10px);
+        transform: translateY(10px);
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+@keyframes moveUpAndDown {
+    0% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+
+    40% {
+        -webkit-transform: translateY(10px);
+        transform: translateY(10px);
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+.social {
+    height: 25px;
+    margin: 40px 0;
+    width: auto;
+    -webkit-filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(150deg) brightness(101%) contrast(110%);
+    filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(150deg) brightness(101%) contrast(110%);
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+.facebook:hover {
+    -webkit-filter: invert(18%) sepia(90%) saturate(7494%) hue-rotate(239deg) brightness(100%) contrast(100%);
+    filter: invert(18%) sepia(90%) saturate(7494%) hue-rotate(239deg) brightness(100%) contrast(100%);
+}
+
+.instagram:hover {
+    -webkit-filter: invert(24%) sepia(87%) saturate(2007%) hue-rotate(325deg) brightness(111%) contrast(101%);
+    filter: invert(24%) sepia(87%) saturate(2007%) hue-rotate(325deg) brightness(111%) contrast(101%);
+}
+
+.twitter:hover {
+    -webkit-filter: invert(96%) sepia(78%) saturate(5011%) hue-rotate(106deg) brightness(86%) contrast(96%);
+    filter: invert(96%) sepia(78%) saturate(5011%) hue-rotate(106deg) brightness(86%) contrast(96%);
+}
+
+.trailersContent {
+    height: 100%;
+}
+
+.trailerBox {
+    width: 20rem;
+    height: 12rem;
+    margin-right: 30px;
+}
+
+.trailerText {
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+@media only screen and (max-width: 1000px) {
+    header {
+        padding: 0;
+    }
+
+    .logo {
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+
+    .flow {
+        display: none;
+    }
+
+    .trailersContent {
+        display: grid;
+        column-gap: 30px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .trailers {
+        height: 30%;
+    }
+
+    .trailerBox {
+        width: 100%;
+        height: 100%;
+    }
+
+    .trailerText {
+        font-size: 30px;
+        margin-top: 0;
+    }
+
+    .leftText {
+        display: flex;
+        flex-direction: column;
+        line-height: 80px;
+    }
+
+    .leftText__the,
+    .leftText__crumbles {
+        margin: 0;
+    }
+
+    .heading-primary {
+        font-size: 90px;
+        font-weight: 500;
+        letter-spacing: 0.3rem;
+    }
+
+    .heading-secondary {
+        font-size: 48px;
+    }
+}
+
+/* END HEADER ******************************** */
+main {
+    border-top: 3px solid black;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)), url('../../img/greenBackground.jpg');
+    background-size: cover;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding-top: 5rem;
+}
+.orderTitle{
+    text-align: center;
+}
+
+.movies {
+    height: 80rem;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.Arrow {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 2rem;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    height: 9rem;
+    width: 9rem;
+}
+
+.Arrow:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.ArrowImg {
+    height: 5rem;
+    -webkit-filter: invert(93%) sepia(42%) saturate(2%) hue-rotate(347deg) brightness(107%) contrast(100%);
+    filter: invert(93%) sepia(42%) saturate(2%) hue-rotate(347deg) brightness(107%) contrast(100%);
+}
+
+.L_Arrow {
+    left: 0;
+}
+
+.R_Arrow {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    right: 0;
+}
+
+.cards {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    left: 0;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    padding-left: 4rem;
+}
+
+.card {
+    display: inline-table;
+    height: 60rem;
+    width: 40rem;
+    position: relative;
+    perspective: 150rem;
+    -webkit-perspective: 150rem;
+    -moz-perspective: 150rem;
+    margin-right: 8rem;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+}
+
+.side {
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-transition: all 0.8s ease;
+    transition: all 0.8s ease;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    background-position: center;
+    background-size: cover;
+    -webkit-box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+
+}
+
+.card:hover .card--front {
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+}
+
+.card:hover .card--back {
+    -webkit-transform: rotateY(0);
+    transform: rotateY(0);
+}
+
+.card__heading {
+    background-color: #252A34;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 5rem;
+}
+
+.heading-quarternary {
+    font-size: 3rem;
+}
+
+.nav {
+    height: 3rem;
+    width: 3rem;
+    border: 0.3rem solid black;
+    padding: 0.5rem;
+    border-radius: 50%;
+    -webkit-filter: invert(93%) sepia(42%) saturate(2%) hue-rotate(347deg) brightness(107%) contrast(100%);
+    filter: invert(93%) sepia(42%) saturate(2%) hue-rotate(347deg) brightness(107%) contrast(100%);
+    cursor: pointer;
+}
+
+.times {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(-webkit-max-content, 1fr));
+    grid-template-columns: repeat(4, minmax(max-content, 1fr));
+    width: 100%;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.time {
+    padding: 0.8rem;
+    text-align: center;
+    font-size: 2.4rem;
+    color: black;
+    font-weight: 700;
+    border: 1px solid #707070;
+    background-color: #EAEAEA;
+    cursor: pointer;
+}
+
+.card--back {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    background: -webkit-gradient(linear, left top, right bottom, from(#C74066), to(#5C1E2F));
+    background: linear-gradient(to right bottom, #C74066, #5C1E2F);
+    text-align: center;
+}
+
+.seats {
+    margin: 3rem 0;
+}
+
+.seat-row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 1rem;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.seat {
+    display: block;
+    width: 1.6rem;
+    height: 1.6rem;
+    background-color: white;
+    cursor: pointer;
+}
+
+.seat:not(:last-child) {
+    margin-right: 1.5rem;
+}
+
+.screen {
+    width: 8rem;
+    height: 0.5rem;
+    background-color: white;
+    margin: 0 auto;
+}
+
+.rightNav {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+.specifications {
+    width: 100%;
+    display: grid;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    grid-template-columns: repeat(2, minmax(-webkit-max-content, 1fr));
+    grid-template-columns: repeat(2, minmax(max-content, 1fr));
+    grid-template-rows: repeat(2, minmax(-webkit-max-content, 1fr));
+    grid-template-rows: repeat(2, minmax(max-content, 1fr));
+    row-gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.choice {
+    font-size: 2rem;
+    padding: 1rem 2rem;
+    background-color: #EAEAEA;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-appearance: none;
+    border-right: 2px solid #707070;
+    color: black;
+    font-weight: bold;
+}
+
+.orderBtn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: #F9ED69;
+    border-radius: 50px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #6A2C70;
+}
+
+.cost {
+    color: #F08A5D;
+}
+
+.selected {
+    background-color: #08D9D6;
+}
+
+.taken {
+    background-color: black;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .cards {
+        padding-left: 6rem;
+    }
+}
+
+/* IF DISPLAY: NONE, JAVASCRIPT KNOWS THAT IT IS A TOUCH SCREEN */
+#javaMobileDetector {
+    display: block;
+}
+
+/* IPAD etc.. */
+@media only screen and (min-width: 750px) and (hover: none) {
+    #javaMobileDetector {
+        display: none;
+    }
+
+    .cards {
+        padding-left: 5rem;
+    }
+
+    html {
+        font-size: 15px;
+    }
+
+    header {
+        padding: 6rem;
+    }
+
+}
+
+/* IPAD PRO etc... */
+@media only screen and (min-width: 1000px) and (hover: none) {
+    #javaMobileDetector {
+        display: none;
+    }
+
+    html {
+        font-size: 20px;
+    }
+
+    header {
+        padding: 6rem;
+    }
+
+    .cards {
+        padding-left: 5rem;
+    }
+
+    .social {
+        height: 60px;
+    }
+
+    .rightContent {
+        justify-content: space-between;
+    }
+
+    .flow {
+        display: none;
+    }
+
+    .logo {
+        height: 60px;
+        width: 150px;
+    }
+
+    .ticketBtn {
+        font-size: 2rem;
+        padding: 15px 40px;
+        border: 4px solid #F7FF0E;
+    }
+
+    .heading-primary {
+        font-size: 140px;
+    }
+
+    .heading-secondary {
+        font-size: 70px;
+    }
+
+    .heading-tertiary {
+        font-size: 50px;
+    }
+}
+
+/* COMING SECTION ********************* */
+.coming {
+    border-top: 3px solid black;
+    width: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../../img/greenBackground.jpg');
+    background-size: cover;
+    text-align: center;
+    padding: 5rem 0;
+}
+
+.futureMovies {
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+    margin-top: 5rem;
+}
+
+.futureMovie--1 {
+    background: url('../../img/F_0.jpg') no-repeat;
+}
+
+.futureMovie--2 {
+    background: url('../../img/F_1.jpg') no-repeat;
+}
+
+.futureMovie--3 {
+    background: url('../../img/F_2.jpg') no-repeat;
+}
+
+.futureMovie--4 {
+    background: url('../../img/F_3.jpg') no-repeat;
+}
+
+.futureMovie {
+    height: 50rem;
+    width: auto;
+    background-size: cover;
+    background-position: top;
+}
+
+.futureMovie__top {
+    display: flex;
+    justify-content: space-around;
+    font-size: 2rem;
+    background-color: black;
+}
+
+/* FOOTER SECTION *********************/
+
+footer {
+    background-color: #161616;
+    color: rgb(173, 173, 173);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 8rem 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.copyright {
+    font-size: 1.6rem;
+    width: 50%;
+    text-align: left;
+    line-height: 3rem;
+}
+
+.contact {
+    text-align: left;
+}
+
+.contactText {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+}
+
+.blue {
+    color: #50e1dc;
+}
+
+.white {
+    color: white;
+}
+.attribution{
+    display: block;
+    margin: 3rem 0;
+}
+@media only screen and (max-width: 1000px) {
+    footer {
+        flex-direction: column;
+        padding: 3rem;
+        align-items: flex-start;
+
+    }
+    .copyright {
+        width: 100%;
+        font-size: 1.9rem;
+        margin-bottom: 3rem;
+    }
+}
+
+/* 
+MAKE HEADER TRAILERS AND COMING SOON HAVE ANIMATED BUTTON THAT DISPLAYS YOUTUBE VIDEO
+
+SHOW UNIQID AFTER ORDERING A MOVIE AND ADD IT TO BASKET
+have random barcode and say show this to the ticket robot to enter the movie hall
+
+SHOW MAP AT THE FOOTER
