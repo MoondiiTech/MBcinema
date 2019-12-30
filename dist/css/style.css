@@ -230,6 +230,7 @@ a {
     display: flex;
 }
 
+
 .trendingTrailer--0 {
     background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../img/secondTrending.jpg') no-repeat;
 }
@@ -238,20 +239,24 @@ a {
     background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../img/firstTrending.jpg') no-repeat;
 }
 
-
 .trendingTrailer {
     width: 30rem;
     height: 18rem;
     cursor: pointer;
     -webkit-box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-    background-position: top;
-    background-size: cover;
+    background-position: center;
+    background-size: 110%;
     position: relative;
+    transition: all 0.4s;
 }
 
 .trendingTrailer:not(:last-child) {
     margin-right: 30px;
+}
+
+.trendingTrailer:hover {
+    background-size: 100%;
 }
 
 .trailerText {
