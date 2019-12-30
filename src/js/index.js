@@ -119,6 +119,13 @@ let DOMselections = {
     'rightNav': document.querySelector('.R_Arrow'),
     'cardsContainer': document.querySelector('.cards'),
     'javaMobileDetector': document.querySelector('#javaMobileDetector'),
+    'futureMovies': document.querySelector('.futureMovies'),
+    'trendingMovies': document.querySelector('.trendingTrailers'),
+    'popupTrailer': document.querySelector('.popupTrailer'),
+    'exitBtn': document.querySelector('.exitBtn'),
+    'futureTrailers': Array.from(document.querySelectorAll('.futureMovie-trailer')),
+    'trendingTrailers': Array.from(document.querySelectorAll('.trendingMovie-trailer')),
+    'iframeLoader': document.querySelector('.holds-the-iframe'),
 }
 
 let addImages = () => {
@@ -349,24 +356,19 @@ let checkMedia = () => {
     if (media1450.matches && window.getComputedStyle(DOMselections.javaMobileDetector).getPropertyValue('display') == 'none') {
         movement = 48;
         lowerLimit = -432;
-    }
-    else if (media500.matches) {
+    } else if (media500.matches) {
         movement = 48;
         lowerLimit = -432;
-    } 
-    else if (media600.matches) {
+    } else if (media600.matches) {
         movement = 41;
         lowerLimit = -410;
-    }
-    else if (media865.matches) {
+    } else if (media865.matches) {
         movement = 65;
         lowerLimit = -390;
-    }
-    else if (media1000.matches) {
+    } else if (media1000.matches) {
         movement = 60;
         lowerLimit = -360;
-    }
-    else if (media1450.matches) {
+    } else if (media1450.matches) {
         movement = 42;
         lowerLimit = -336;
     } else if (media1600.matches) {
@@ -375,8 +377,7 @@ let checkMedia = () => {
     } else if (media1700.matches) {
         movement = 50;
         lowerLimit = -320;
-    }
-    else if (media1800.matches) {
+    } else if (media1800.matches) {
         movement = 62;
         lowerLimit = -310;
     } else if (media1900.matches) {
@@ -411,3 +412,59 @@ DOMselections.rightNav.addEventListener('click', () => {
     }
     DOMselections.cardsContainer.style.webkitTransform = `translate(${distance}rem,-50%)`;
 })
+
+// COMING SOON SECTION ----> CLICK AND TRAILER POPS UP ************
+let futureTrailerNum = 0,
+    trendingTrailerNum = 0;
+    let iframeLoaded = false;
+DOMselections.futureMovies.addEventListener('click', e => {
+    for (let i = 0; i < 4; i++) {
+        if (e.target.matches(`.futureMovie--${i}`)) {
+            futureTrailerNum = i;
+            DOMselections.popupTrailer.classList.remove('hide');
+            if(iframeLoaded){
+                DOMselections.futureTrailers[futureTrailerNum].classList.remove('hide');
+            }
+            else{
+                DOMselections.iframeLoader.classList.remove('hide');
+            }
+            // When Iframes load once initially
+            DOMselections.futureTrailers[futureTrailerNum].onload = () => {
+                iframeLoaded = true;
+                DOMselections.iframeLoader.classList.add('hide');
+                DOMselections.futureTrailers[futureTrailerNum].classList.remove('hide');
+            }
+        }
+    }
+})
+DOMselections.trendingMovies.addEventListener('click', e => {
+    for (let i = 0; i < 2; i++) {
+        if (e.target.matches(`.trendingTrailer--${i}`)) {
+            trendingTrailerNum = i;
+            DOMselections.popupTrailer.classList.remove('hide');
+            if(iframeLoaded){
+                DOMselections.trendingTrailers[trendingTrailerNum].classList.remove('hide');
+            }
+            else{
+                DOMselections.iframeLoader.classList.remove('hide');
+            }
+            // When Iframes load once initially
+            DOMselections.trendingTrailers[trendingTrailerNum].onload = () => {
+                iframeLoaded = true;
+                DOMselections.iframeLoader.classList.add('hide');
+                DOMselections.trendingTrailers[trendingTrailerNum].classList.remove('hide');
+            }
+        }
+    }
+})
+DOMselections.exitBtn.addEventListener('click', () => {
+    DOMselections.popupTrailer.classList.add('hide');
+    DOMselections.futureTrailers[futureTrailerNum].classList.add('hide');
+    DOMselections.trendingTrailers[trendingTrailerNum].classList.add('hide');
+    resetIframesOnExit();
+})
+let resetIframesOnExit = ()=>{
+    document.querySelectorAll("iframe").forEach(e=>{
+        e.src = e.src;
+    })
+}

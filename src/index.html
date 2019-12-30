@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="../dist/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="animate.css">
     <title>Mbcinema - The best cinema</title>
 </head>
 
@@ -21,14 +22,14 @@
             </div>
             <div class="trailers">
                 <h3 class="heading-tertiary trailerText">Trailers</h3>
-                <div class="trailersContent">
-                    <iframe class="trailerBox" src="https://www.youtube.com/embed/xbqNb2PFKKA" frameborder="0"
-                        target="_blank" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
-                    <iframe class="trailerBox" src="https://www.youtube.com/embed/o-In13bZbAQ" frameborder="0"
-                        target="_blank" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
-                </div class="trailers">
+                <div class="trendingTrailers">
+                    <div class="trendingTrailer trendingTrailer--0">
+                        <img src="../img/play.svg" alt="" class="playBtn">
+                    </div>
+                    <div class="trendingTrailer trendingTrailer--1">
+                        <img src="../img/play.svg" alt="" class="playBtn">
+                    </div>
+                </div>
             </div>
         </div>
         <div class="flow">
@@ -172,31 +173,34 @@
             Coming soon
         </h2>
         <div class="futureMovies">
-            <div class="futureMovie futureMovie--1">
+            <div class="futureMovie futureMovie--0">
                 <div class="futureMovie__top">
                     <p class="movieDate">2020/01/01</p>
                     <p class="movieDay">3 days left</p>
                 </div>
+                <img src="../img/play.svg" alt="" class="playBtn">
+            </div>
+            <div class="futureMovie futureMovie--1">
+                <div class="futureMovie__top">
+                    <p class="movieDate">2020/01/15</p>
+                    <p class="movieDay">17 days left</p>
+                </div>
+                <img src="../img/play.svg" alt="" class="playBtn">
             </div>
             <div class="futureMovie futureMovie--2">
                 <div class="futureMovie__top">
-                    <p class="movieDate">2020/01/01</p>
-                    <p class="movieDay">3 days left</p>
+                    <p class="movieDate">2020/01/05</p>
+                    <p class="movieDay">7 days left</p>
                 </div>
+                <img src="../img/play.svg" alt="" class="playBtn">
             </div>
             <div class="futureMovie futureMovie--3">
                 <div class="futureMovie__top">
-                    <p class="movieDate">2020/01/01</p>
-                    <p class="movieDay">3 days left</p>
+                    <p class="movieDate">2020/01/03</p>
+                    <p class="movieDay">5 days left</p>
                 </div>
+                <img src="../img/play.svg" alt="" class="playBtn">
             </div>
-            <div class="futureMovie futureMovie--4">
-                <div class="futureMovie__top">
-                    <p class="movieDate">2020/01/01</p>
-                    <p class="movieDay">3 days left</p>
-                </div>
-            </div>
-
         </div>
     </section>
     <footer>
@@ -205,17 +209,43 @@
             age, status as a protected veteran, status as an individual with a disability, or any other applicable
             legally protected characteristics.
             That being said, MBcinema is the first fully autonomus cinema in Mongolia.
-            <span class="attribution"><span class="blue">Attributions: </span>Icons made by <a href="https://www.flaticon.com/authors/freepik" target="_blank"
-                    title="Freepik">Freepik</a> from
+            <span class="attribution"><span class="blue">Attributions: </span>Icons made by <a
+                    href="https://www.flaticon.com/authors/freepik" target="_blank" title="Freepik">Freepik</a> from
                 <a href="https://www.flaticon.com/" target="_blank" title="Flaticon">www.flaticon.com.</a> </span>
-                <span><span class="blue">Creator: </span>Website made by <a href="https://www.linkedin.com/in/munkhbilguun-munkhdemberel-2193ba19a/" target = '_blank' class = "white">Munkhbilguun Munkhdemberel</a></span>
+            <span><span class="blue">Creator: </span>Website made by <a
+                    href="https://www.linkedin.com/in/munkhbilguun-munkhdemberel-2193ba19a/" target='_blank'
+                    class="white">Munkhbilguun Munkhdemberel</a></span>
         </p>
         <div class="contact">
             <p class="contactText"><span class="blue">Email: </span>moondii100@gmail.com</p>
             <p class="contactText phone"><span class="blue">Phone: </span>999999999</p>
-            <p class="contactText location"><span class="blue">Address: </span>KhanUul district, zaisangiin gudamj, MBcinema</p>
+            <p class="contactText location"><span class="blue">Address: </span>KhanUul district, zaisangiin gudamj,
+                MBcinema</p>
         </div>
     </footer>
+    <div class="popupTrailer hide">
+        <div class="holds-the-iframe"></div>
+        <iframe class="trendingMovie-trailer trendingMovie--0 hide"
+                src="https://www.youtube.com/embed/ue80QwXMRHg/?enablejsapi=1" frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        <iframe class="trendingMovie-trailer trendingMovie--1 hide" src="https://www.youtube.com/embed/5hPfxkilfjo/?enablejsapi=1"
+            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        <iframe class="futureMovie-trailer futureMovie--0-trailer hide" src="https://www.youtube.com/embed/FF932ZU6Kn4/?enablejsapi=1"
+            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        <iframe class="futureMovie-trailer futureMovie--1-trailer hide" src="https://www.youtube.com/embed/mqKAhsp-QqQ/?enablejsapi=1"
+            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        <iframe class="futureMovie-trailer futureMovie--2-trailer hide" src="https://www.youtube.com/embed/YjpsGw7YlU8/?enablejsapi=1"
+            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        <iframe class="futureMovie-trailer futureMovie--3-trailer hide" src="https://www.youtube.com/embed/RxAtuMu_ph4?enablejsapi=1"
+            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        <img src="../img/exit.svg" alt="" class="exitBtn animated delay-200ms bounceIn">
+    </div>
     <script src="js/index.js"></script>
 </body>
 

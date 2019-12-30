@@ -47,6 +47,7 @@ html {
         font-size: 7px;
     }
 }
+
 @media only screen and (max-width: 350px) {
     html {
         font-size: 6px;
@@ -62,8 +63,8 @@ header {
     background: linear-gradient(to right, rgba(0, 0, 0, 0.95), rgba(12, 12, 12, 0.6)), url('../../img/hulk.jpg') no-repeat;
     background-position: center;
     background-size: cover;
-    height: 80rem;
-    padding: 8rem;
+    height: 75rem;
+    padding: 7rem;
 }
 
 a {
@@ -109,12 +110,8 @@ a {
     justify-content: space-between;
 }
 
-@media only screen and (max-width: 1000px) {
-    .leftContent {
-        float: none;
-        width: 100%;
-        text-align: center;
-    }
+.leftText {
+    margin-top: 4rem;
 }
 
 .leftText__the {
@@ -139,12 +136,6 @@ a {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-}
-
-@media only screen and (max-width: 1000px) {
-    .rightContent {
-        display: none;
-    }
 }
 
 .redText {
@@ -234,13 +225,32 @@ a {
     filter: invert(96%) sepia(78%) saturate(5011%) hue-rotate(106deg) brightness(86%) contrast(96%);
 }
 
-.trailersContent {
-    height: 100%;
+.trendingTrailers {
+    height: auto;
+    display: flex;
 }
 
-.trailerBox {
-    width: 20rem;
-    height: 12rem;
+.trendingTrailer--0 {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../img/secondTrending.jpg') no-repeat;
+}
+
+.trendingTrailer--1 {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../img/firstTrending.jpg') no-repeat;
+}
+
+
+.trendingTrailer {
+    width: 30rem;
+    height: 18rem;
+    cursor: pointer;
+    -webkit-box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    background-position: top;
+    background-size: cover;
+    position: relative;
+}
+
+.trendingTrailer:not(:last-child) {
     margin-right: 30px;
 }
 
@@ -259,23 +269,13 @@ a {
         margin-left: 20px;
     }
 
-    .flow {
-        display: none;
+    .trendingTrailers {
+        justify-content: center;
     }
 
-    .trailersContent {
-        display: grid;
-        column-gap: 30px;
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .trailers {
-        height: 30%;
-    }
-
-    .trailerBox {
-        width: 100%;
-        height: 100%;
+    .trendingTrailer {
+        width: 40rem;
+        height: 15rem;
     }
 
     .trailerText {
@@ -289,11 +289,6 @@ a {
         line-height: 80px;
     }
 
-    .leftText__the,
-    .leftText__crumbles {
-        margin: 0;
-    }
-
     .heading-primary {
         font-size: 90px;
         font-weight: 500;
@@ -302,6 +297,33 @@ a {
 
     .heading-secondary {
         font-size: 48px;
+    }
+}
+
+@media only screen and (max-width: 400px),
+only screen and (min-width: 750px) and (hover: none) {
+    html {
+        font-size: 7px;
+    }
+
+    .heading-primary {
+        font-size: 10rem;
+    }
+
+    .heading-secondary {
+        font-size: 5rem;
+    }
+
+    .heading-tertiary {
+        font-size: 4rem;
+    }
+
+    .leftText {
+        line-height: 8rem;
+    }
+
+    .trailerText {
+        margin-bottom: 1rem;
     }
 }
 
@@ -315,12 +337,13 @@ main {
     width: 100%;
     padding-top: 5rem;
 }
-.orderTitle{
+
+.orderTitle {
     text-align: center;
 }
 
 .movies {
-    height: 80rem;
+    height: 75rem;
     width: 100%;
     position: relative;
     overflow: hidden;
@@ -374,6 +397,7 @@ main {
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
     padding-left: 4rem;
+    margin-top: 2rem;
 }
 
 .card {
@@ -407,7 +431,6 @@ main {
     background-size: cover;
     -webkit-box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-
 }
 
 .card:hover .card--front {
@@ -590,9 +613,8 @@ main {
     }
 
     header {
-        padding: 6rem;
+        padding: 3rem;
     }
-
 }
 
 /* IPAD PRO etc... */
@@ -606,7 +628,7 @@ main {
     }
 
     header {
-        padding: 6rem;
+        padding: 4rem;
     }
 
     .cards {
@@ -615,14 +637,6 @@ main {
 
     .social {
         height: 60px;
-    }
-
-    .rightContent {
-        justify-content: space-between;
-    }
-
-    .flow {
-        display: none;
     }
 
     .logo {
@@ -636,17 +650,32 @@ main {
         border: 4px solid #F7FF0E;
     }
 
-    .heading-primary {
-        font-size: 140px;
+    .trailerText {
+        font-size: 3.5rem;
+    }
+}
+
+@media only screen and (max-width: 1000px),
+only screen and (min-width: 1000px) and (hover: none) {
+    .rightContent {
+        display: none;
     }
 
-    .heading-secondary {
-        font-size: 70px;
+    .flow {
+        display: none;
     }
 
-    .heading-tertiary {
-        font-size: 50px;
+    .leftContent {
+        float: none;
+        width: 100%;
+        text-align: center;
     }
+
+    .leftText__the,
+    .leftText__crumbles {
+        margin: 0;
+    }
+
 }
 
 /* COMING SECTION ********************* */
@@ -664,22 +693,23 @@ main {
     grid-gap: 2rem;
     grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
     margin-top: 5rem;
+    position: relative;
+}
+
+.futureMovie--0 {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../../img/F_0.jpg') no-repeat;
 }
 
 .futureMovie--1 {
-    background: url('../../img/F_0.jpg') no-repeat;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../../img/F_1.jpg') no-repeat;
 }
 
 .futureMovie--2 {
-    background: url('../../img/F_1.jpg') no-repeat;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../../img/F_2.jpg') no-repeat;
 }
 
 .futureMovie--3 {
-    background: url('../../img/F_2.jpg') no-repeat;
-}
-
-.futureMovie--4 {
-    background: url('../../img/F_3.jpg') no-repeat;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../../img/F_3.jpg') no-repeat;
 }
 
 .futureMovie {
@@ -687,6 +717,15 @@ main {
     width: auto;
     background-size: cover;
     background-position: top;
+    cursor: pointer;
+    position: relative;
+    -webkit-box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s;
+}
+
+.futureMovie:hover {
+    transform: translateY(-5%);
 }
 
 .futureMovie__top {
@@ -694,6 +733,106 @@ main {
     justify-content: space-around;
     font-size: 2rem;
     background-color: black;
+}
+
+.holds-the-iframe {
+    background: url(../../img/loader.gif) center center no-repeat;
+    background-size: cover;
+    height: 5rem;
+    width: 5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+}
+
+.playBtn {
+    position: absolute;
+    width: 6rem;
+    height: 6rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(150deg) brightness(101%) contrast(110%);
+    filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(150deg) brightness(101%) contrast(110%);
+}
+
+.popupTrailer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1000;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9));
+}
+
+.hide {
+    display: none;
+}
+
+.futureMovie-trailer,
+.trendingMovie-trailer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vw;
+    height: 60vh;
+    animation: popUp 0.5s 0.2s ease;
+    animation-fill-mode: backwards;
+}
+
+@keyframes popUp {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.exitBtn {
+    width: 10rem;
+    height: 10rem;
+    -webkit-filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(150deg) brightness(101%) contrast(110%);
+    filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(150deg) brightness(101%) contrast(110%);
+    cursor: pointer;
+}
+
+@media only screen and (max-width:800px) {
+    .futureMovie-trailer {
+        width: 100%;
+        height: 60rem;
+    }
+}
+
+@media only screen and (max-width:600px) {
+    .futureMovie-trailer {
+        width: 100%;
+        height: 40rem;
+    }
+}
+
+@media only screen and (max-width:1250px) and (hover:none) {
+    .futureMovie-trailer {
+        width: 100%;
+        height: 40rem;
+    }
+
+    .exitBtn {
+        width: 7rem;
+        height: 7rem;
+    }
+}
+
+@media only screen and (max-width:800px) and (hover:none) {
+    .futureMovie-trailer {
+        width: 100%;
+        height: 30rem;
+    }
 }
 
 /* FOOTER SECTION *********************/
@@ -736,10 +875,12 @@ footer {
 .white {
     color: white;
 }
-.attribution{
+
+.attribution {
     display: block;
     margin: 3rem 0;
 }
+
 @media only screen and (max-width: 1000px) {
     footer {
         flex-direction: column;
@@ -747,6 +888,7 @@ footer {
         align-items: flex-start;
 
     }
+
     .copyright {
         width: 100%;
         font-size: 1.9rem;
