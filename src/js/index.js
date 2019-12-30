@@ -416,23 +416,27 @@ DOMselections.rightNav.addEventListener('click', () => {
 // COMING SOON SECTION ----> CLICK AND TRAILER POPS UP ************
 let futureTrailerNum = 0,
     trendingTrailerNum = 0;
-    let iframeLoaded = false;
+// if futureOrNot = false then, last clicked element is trending 
+let iframeLoaded = false,
+    futureOrNot = false;
 DOMselections.futureMovies.addEventListener('click', e => {
     for (let i = 0; i < 4; i++) {
         if (e.target.matches(`.futureMovie--${i}`)) {
             futureTrailerNum = i;
+            futureOrNot = true;
             DOMselections.popupTrailer.classList.remove('hide');
-            if(iframeLoaded){
+            if (iframeLoaded) {
                 DOMselections.futureTrailers[futureTrailerNum].classList.remove('hide');
-            }
-            else{
+            } else {
                 DOMselections.iframeLoader.classList.remove('hide');
             }
             // When Iframes load once initially
             DOMselections.futureTrailers[futureTrailerNum].onload = () => {
-                iframeLoaded = true;
-                DOMselections.iframeLoader.classList.add('hide');
-                DOMselections.futureTrailers[futureTrailerNum].classList.remove('hide');
+                if (!iframeLoaded) {
+                    iframeLoaded = true;
+                    DOMselections.iframeLoader.classList.add('hide');
+                    DOMselections.futureTrailers[futureTrailerNum].classList.remove('hide');
+                }
             }
         }
     }
@@ -440,31 +444,33 @@ DOMselections.futureMovies.addEventListener('click', e => {
 DOMselections.trendingMovies.addEventListener('click', e => {
     for (let i = 0; i < 2; i++) {
         if (e.target.matches(`.trendingTrailer--${i}`)) {
+            futureOrNot = false;
+
             trendingTrailerNum = i;
             DOMselections.popupTrailer.classList.remove('hide');
-            if(iframeLoaded){
+            if (iframeLoaded) {
                 DOMselections.trendingTrailers[trendingTrailerNum].classList.remove('hide');
-            }
-            else{
+            } else {
                 DOMselections.iframeLoader.classList.remove('hide');
             }
             // When Iframes load once initially
             DOMselections.trendingTrailers[trendingTrailerNum].onload = () => {
-                iframeLoaded = true;
-                DOMselections.iframeLoader.classList.add('hide');
-                DOMselections.trendingTrailers[trendingTrailerNum].classList.remove('hide');
+                if (!iframeLoaded) {
+                    iframeLoaded = true;
+                    DOMselections.iframeLoader.classList.add('hide');
+                    DOMselections.trendingTrailers[trendingTrailerNum].classList.remove('hide');
+                }
             }
         }
     }
 })
 DOMselections.exitBtn.addEventListener('click', () => {
     DOMselections.popupTrailer.classList.add('hide');
-    DOMselections.futureTrailers[futureTrailerNum].classList.add('hide');
-    DOMselections.trendingTrailers[trendingTrailerNum].classList.add('hide');
-    resetIframesOnExit();
+    if (futureOrNot) {
+        DOMselections.futureTrailers[futureTrailerNum].classList.add('hide');
+        DOMselections.futureTrailers[futureTrailerNum].src = DOMselections.futureTrailers[futureTrailerNum].src;
+    } else {
+        DOMselections.trendingTrailers[trendingTrailerNum].classList.add('hide');
+        DOMselections.trendingTrailers[trendingTrailerNum].src = DOMselections.trendingTrailers[trendingTrailerNum].src;
+    }
 })
-let resetIframesOnExit = ()=>{
-    document.querySelectorAll("iframe").forEach(e=>{
-        e.src = e.src;
-    })
-}
