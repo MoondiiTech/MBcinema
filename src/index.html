@@ -204,24 +204,27 @@
         </div>
     </section>
     <footer>
-        <p class="copyright">&#169; MBcinema is proud to be an equal opportunity workplace. We do not discriminate
-            based upon race, religion, color, national origin, sex, sexual orientation, gender identity/expression,
-            age, status as a protected veteran, status as an individual with a disability, or any other applicable
-            legally protected characteristics.
-            That being said, MBcinema is the first fully autonomus cinema in Mongolia.
-            <span class="attribution"><span class="blue">Attributions: </span>Icons made by <a
-                    href="https://www.flaticon.com/authors/freepik" target="_blank" title="Freepik">Freepik</a> from
-                <a href="https://www.flaticon.com/" target="_blank" title="Flaticon">www.flaticon.com.</a> </span>
-            <span><span class="blue">Creator: </span>Website made by <a
-                    href="https://www.linkedin.com/in/munkhbilguun-munkhdemberel-2193ba19a/" target='_blank'
-                    class="white">Munkhbilguun Munkhdemberel</a></span>
-        </p>
-        <div class="contact">
-            <p class="contactText"><span class="blue">Email: </span>moondii100@gmail.com</p>
-            <p class="contactText phone"><span class="blue">Phone: </span>999999999</p>
-            <p class="contactText location"><span class="blue">Address: </span>KhanUul district, zaisangiin gudamj,
+        <div class="footerText">
+            <p class="copyright">&#169; MBcinema is proud to be an equal opportunity workplace. We do not discriminate
+                based upon race, religion, color, national origin, sex, sexual orientation, gender identity/expression,
+                age, status as a protected veteran, status as an individual with a disability, or any other applicable
+                legally protected characteristics.
+                That being said, MBcinema is the first fully autonomus cinema in Mongolia.</p>
+            <p class="copyright"><span class="attribution"><span class="blue">Attributions: </span>Icons made by <a
+                        href="https://www.flaticon.com/authors/freepik" target="_blank" title="Freepik">Freepik</a> from
+
+                    <a href="https://www.flaticon.com/" target="_blank" title="Flaticon">www.flaticon.com.</a>
+                </span>
+            </p>
+            <p class="copyright"><span><span class="blue">Creator: </span>Website made by <a
+                        href="https://www.linkedin.com/in/munkhbilguun-munkhdemberel-2193ba19a/" target='_blank'
+                        class="white">Munkhbilguun Munkhdemberel</a></span></p>
+            <p class="copyright"><span class="blue">Email: </span>moondii100@gmail.com</p>
+            <p class="copyright phone"><span class="blue">Phone: </span>999999999</p>
+            <p class="copyright location"><span class="blue">Address: </span>KhanUul district, zaisan toiruu,
                 MBcinema</p>
         </div>
+        <div id="map"></div>
     </footer>
     <div class="popupTrailer hide">
         <div class="holds-the-iframe"></div>
@@ -249,3 +252,43 @@
 </body>
 
 </html>
+
+// GOOGLE MAP
+<script>
+    function initMap() {
+        let options = {
+            zoom: 16,
+            center: {
+                lat: 47.886110,
+                lng: 106.919127
+            }
+        }
+        // New Map
+        let map = new google.maps.Map(document.getElementById('map'), options);
+
+        // Add marker
+        var image = {
+            url: '../img/cinema.svg',
+            // The origin for this image is (0, 0).
+            origin: new google.maps.Point(0, 0),
+        };
+        var marker = new google.maps.Marker({
+            position: {
+                lat: 47.886110,
+                lng: 106.919127
+            },
+            map: map,
+            icon: image,
+        });
+        // Show info on click
+        let infoWindow = new google.maps.InfoWindow({
+            content: '<h1>MBcinema</h1>'
+        });
+        marker.addListener('click',()=>{
+            infoWindow.open(map,marker);
+        });
+    }
+</script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0o3d19aXmNah9dtxgDbafTJGiCRAGecM&callback=initMap"
+    type="text/javascript"></script>
