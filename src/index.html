@@ -226,6 +226,14 @@
         </div>
         <div id="map"></div>
     </footer>
+    <div class="popupOrder hide">
+        <div class="unique">
+            <svg id="barcode"></svg>
+            <h2 class="heading-tertiary popupOrder-text">(Show this barcode to the ticket robot and get access to the
+                movie hall)</h2>
+        </div>
+        <img src="../img/exit.svg" alt="" class="exitBtn popupOrderClose animated delay-200ms bounceIn">
+    </div>
     <div class="popupTrailer hide">
         <div class="holds-the-iframe"></div>
         <iframe class="trendingMovie-trailer trendingMovie--0 hide" src="https://www.youtube.com/embed/ue80QwXMRHg"
@@ -246,15 +254,17 @@
         <iframe class="futureMovie-trailer futureMovie--3-trailer hide" src="https://www.youtube.com/embed/RxAtuMu_ph4"
             frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
-        <img src="../img/exit.svg" alt="" class="exitBtn animated delay-200ms bounceIn">
+        <img src="../img/exit.svg" alt="" class="exitBtn popupTrailerClose animated delay-200ms bounceIn">
     </div>
+    // Barcode js must come before to allow index.js to use JsBarcode function
+    <script src="js/barcode.js"></script>
     <script src="js/index.js"></script>
 </body>
 
 </html>
 
-// GOOGLE MAP
 <script>
+    // GOOGLE MAP (need to add billing info to make it fully work)
     function initMap() {
         let options = {
             zoom: 16,
@@ -284,8 +294,8 @@
         let infoWindow = new google.maps.InfoWindow({
             content: '<h1>MBcinema</h1>'
         });
-        marker.addListener('click',()=>{
-            infoWindow.open(map,marker);
+        marker.addListener('click', () => {
+            infoWindow.open(map, marker);
         });
     }
 </script>

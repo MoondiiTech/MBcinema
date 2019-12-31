@@ -4,7 +4,7 @@ let ageCost = [],
     cards = 10,
     total = [];
 
-// CARD ADDING ******************************
+// *********************** CARD ADDING ******************************
 let fillRandomSeats = () => {
     let numSeats = 9,
         i = 0;
@@ -108,12 +108,28 @@ let addCards = () => {
 }
 addCards();
 
+// Adding images to the cards, must be called after they are created
+let addImages = () => {
+    let i = 0;
+    while (i < cards) {
+        document.querySelectorAll('.card--front')[i].style.backgroundImage = `url(../../img/M_${i}.jpg)`;
+        i++;
+    }
+}
+addImages();
+
+// Upper title of the card --> Day is set dynamically
+var today = new Date();
+let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+document.querySelectorAll('.date').forEach(e => {
+    e.innerHTML = days[today.getDay()];
+})
+
+// DOM should be set up after cards are created since it is referencing card components
 let DOMselections = {
     'main': document.getElementById('main'),
     'cards': Array.from(document.querySelectorAll('.card')),
-    'cardsFront': Array.from(document.querySelectorAll('.card--front')),
     'cost': Array.from(document.querySelectorAll('.cost')),
-    'dates': document.querySelectorAll('.date'),
     'orderBtn': document.querySelectorAll('.orderBtn'),
     'leftNav': document.querySelector('.L_Arrow'),
     'rightNav': document.querySelector('.R_Arrow'),
@@ -122,28 +138,21 @@ let DOMselections = {
     'futureMovies': document.querySelector('.futureMovies'),
     'trendingMovies': document.querySelector('.trendingTrailers'),
     'popupTrailer': document.querySelector('.popupTrailer'),
-    'exitBtn': document.querySelector('.exitBtn'),
+    'popupOrder': document.querySelector('.popupOrder'),
+    'popupOrderClose': document.querySelector('.popupOrderClose'),
+    'popupTrailerClose': document.querySelector('.popupTrailerClose'),
     'futureTrailers': Array.from(document.querySelectorAll('.futureMovie-trailer')),
     'trendingTrailers': Array.from(document.querySelectorAll('.trendingMovie-trailer')),
     'iframeLoader': document.querySelector('.holds-the-iframe'),
 }
-
-let addImages = () => {
-    let i = 0;
-    while (i < cards) {
-        DOMselections.cardsFront[i].style.backgroundImage = `url(../../img/M_${i}.jpg)`;
-        i++;
-    }
+// SCROLLING
+let preventScrolling = ()=>{
+    document.querySelector('body').classList.add('stop-scrolling');
 }
-addImages();
-
-var today = new Date();
-let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-DOMselections.dates.forEach(e => {
-    e.innerHTML = days[today.getDay()];
-})
-
-
+let resumeScrolling = ()=>{
+    document.querySelector('body').classList.remove('stop-scrolling');
+}
+// ******************* TICKET ORDERING ***********************
 // if true then child, if true then two
 let childOrAdult = [],
     twoDorThreeD = [],
@@ -253,6 +262,7 @@ let updateCost = (e) => {
         DOMselections.cost[cardNum].innerHTML = `$${total[cardNum]}`;
     }
 }
+// Change colors when different choice combination is selected eg 3d+Adult blue, 2d+Adult pink
 let changeColors = (e) => {
     if (!e.target.matches('.orderBtn')) {
         if (!childOrAdult[cardNum] && !twoDorThreeD[cardNum] && !e.target.matches('.time')) {
@@ -298,9 +308,12 @@ let select = (e) => {
     e.target.classList.toggle('selected');
     changeColors(e);
 }
+
 let selectSeat = (e) => {
+    // Update Cost when seat is chosen
     updateCost(e);
-    //If click again on colored seat, it becomes grey again
+
+    //If clicked again on colored seat, it becomes grey again
     if (e.target.matches('.selected')) {
         e.target.style.background = '#EAEAEA';
     } else {
@@ -309,6 +322,13 @@ let selectSeat = (e) => {
     e.target.classList.toggle('selected');
 }
 let order = (e) => {
+    
+    preventScrolling();
+
+    // Show barcode 
+    DOMselections.popupOrder.classList.remove('hide');
+
+    // Occupy chosen seats
     getCardNum(e, 3);
 
     if (currentCardDOM === undefined || (Array.from(currentCardDOM.querySelectorAll('.time.selected')).length === 0 && Array.from(currentCardDOM.querySelectorAll('.seat.selected')).length === 0)) {
@@ -327,6 +347,7 @@ let order = (e) => {
         })
     }
 }
+// Each order btn of the cards will call order function on click
 DOMselections.orderBtn.forEach(e => {
     e.addEventListener('click', (e) => {
         e.preventDefault();
@@ -334,11 +355,16 @@ DOMselections.orderBtn.forEach(e => {
     })
 })
 
-// SLIDING ***************************
+// ************************ SLIDING ***************************
 let movement = 48,
     upperLimit = 0,
     lowerLimit = -336,
-    distance = 0;
+    distance = 0,
+    // barcode ratio is 1:30
+    barcodeW = 10,
+    barcodeH = 300;
+
+// Media query break points 
 let media2000 = window.matchMedia('(max-width: 2000px)')
 let media1950 = window.matchMedia('(max-width: 1950px)');
 let media1900 = window.matchMedia('(max-width: 1900px)');
@@ -351,29 +377,43 @@ let media865 = window.matchMedia('(max-width: 865px)');
 let media600 = window.matchMedia('(max-width: 600px)');
 let media500 = window.matchMedia('(max-width: 500px)');
 
+// the lowerlimit (right side limit) is changing based on the screen size and needs to be changed accordingly along with movement
+// barcode image needs to resize properly
 let checkMedia = () => {
-    // IPAD etc
+    // IPAD pro etc
     if (media1450.matches && window.getComputedStyle(DOMselections.javaMobileDetector).getPropertyValue('display') == 'none') {
         movement = 48;
         lowerLimit = -432;
+        barcodeW = 10,
+        barcodeH = 300;
     } else if (media500.matches) {
         movement = 48;
         lowerLimit = -432;
+        barcodeW = 4,
+        barcodeH = 120;
     } else if (media600.matches) {
         movement = 41;
         lowerLimit = -410;
+        barcodeW = 5,
+        barcodeH = 150;
     } else if (media865.matches) {
         movement = 65;
         lowerLimit = -390;
     } else if (media1000.matches) {
         movement = 60;
         lowerLimit = -360;
+        barcodeW = 5,
+        barcodeH = 150;
     } else if (media1450.matches) {
         movement = 42;
         lowerLimit = -336;
+        barcodeW = 7,
+        barcodeH = 210;
     } else if (media1600.matches) {
         movement = 48;
         lowerLimit = -336;
+        barcodeW = 10,
+        barcodeH = 300;
     } else if (media1700.matches) {
         movement = 50;
         lowerLimit = -320;
@@ -391,11 +431,16 @@ let checkMedia = () => {
         lowerLimit = -305;
     }
 }
+
+// Check dimensions of the screen intially to know what device the user is using
 checkMedia();
+
+// Adapt everytime screen is resized
 window.addEventListener('resize', () => {
     checkMedia();
 })
 
+// Move/translate cards section when left or right btn is clicked
 DOMselections.leftNav.addEventListener('click', () => {
     if (distance >= upperLimit) {
         distance = upperLimit;
@@ -413,15 +458,19 @@ DOMselections.rightNav.addEventListener('click', () => {
     DOMselections.cardsContainer.style.webkitTransform = `translate(${distance}rem,-50%)`;
 })
 
-// COMING SOON SECTION ----> CLICK AND TRAILER POPS UP ************
+// *************************** COMING SOON SECTION ----> CLICK AND TRAILER POPS UP **************************
 let futureTrailerNum = 0,
     trendingTrailerNum = 0;
+
 // if futureOrNot = false then, last clicked element is trending 
 let iframeLoaded = false,
     futureOrNot = false;
+
+// Future movie thumbnail click
 DOMselections.futureMovies.addEventListener('click', e => {
     for (let i = 0; i < 4; i++) {
         if (e.target.matches(`.futureMovie--${i}`)) {
+            preventScrolling();
             futureTrailerNum = i;
             futureOrNot = true;
             DOMselections.popupTrailer.classList.remove('hide');
@@ -430,7 +479,7 @@ DOMselections.futureMovies.addEventListener('click', e => {
             } else {
                 DOMselections.iframeLoader.classList.remove('hide');
             }
-            // When Iframes load once initially
+            // Only when Iframes load once initially. This will try to be called when src refreshes on exitBtn click but iframeloaded will not allow it
             DOMselections.futureTrailers[futureTrailerNum].onload = () => {
                 if (!iframeLoaded) {
                     iframeLoaded = true;
@@ -441,11 +490,13 @@ DOMselections.futureMovies.addEventListener('click', e => {
         }
     }
 })
+
+// Trending movie thumbnail click
 DOMselections.trendingMovies.addEventListener('click', e => {
     for (let i = 0; i < 2; i++) {
         if (e.target.matches(`.trendingTrailer--${i}`)) {
+            preventScrolling();
             futureOrNot = false;
-
             trendingTrailerNum = i;
             DOMselections.popupTrailer.classList.remove('hide');
             if (iframeLoaded) {
@@ -453,7 +504,7 @@ DOMselections.trendingMovies.addEventListener('click', e => {
             } else {
                 DOMselections.iframeLoader.classList.remove('hide');
             }
-            // When Iframes load once initially
+            // Only when Iframes load once initially. This will try to be called when src refreshes on exitBtn click but iframeloaded will not allow it
             DOMselections.trendingTrailers[trendingTrailerNum].onload = () => {
                 if (!iframeLoaded) {
                     iframeLoaded = true;
@@ -464,8 +515,10 @@ DOMselections.trendingMovies.addEventListener('click', e => {
         }
     }
 })
-DOMselections.exitBtn.addEventListener('click', () => {
+// Popup exit btn click
+DOMselections.popupTrailerClose.addEventListener('click', () => {
     DOMselections.popupTrailer.classList.add('hide');
+    resumeScrolling();
     if (futureOrNot) {
         DOMselections.futureTrailers[futureTrailerNum].classList.add('hide');
         DOMselections.futureTrailers[futureTrailerNum].src = DOMselections.futureTrailers[futureTrailerNum].src;
@@ -473,4 +526,23 @@ DOMselections.exitBtn.addEventListener('click', () => {
         DOMselections.trendingTrailers[trendingTrailerNum].classList.add('hide');
         DOMselections.trendingTrailers[trendingTrailerNum].src = DOMselections.trendingTrailers[trendingTrailerNum].src;
     }
+})
+
+// Barcode from order popup
+// min pharmacode type barcode value is 1000 in this case and max is 131070
+let randomBarcode = Math.floor(Math.random() * 130071 - 1000);
+JsBarcode("#barcode", `${randomBarcode}`,{
+    format: "pharmacode",
+    lineColor: "#0aa",
+    value: '12345999',
+    width: `${barcodeW}`,
+    height: `${barcodeH}`,
+    displayValue: false,
+    background: 'transparent',
+});
+
+// Barcode exit btn click
+DOMselections.popupOrderClose.addEventListener('click', ()=>{
+    resumeScrolling();
+    DOMselections.popupOrder.classList.add('hide');
 })
