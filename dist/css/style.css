@@ -48,12 +48,6 @@ html {
     }
 }
 
-@media only screen and (max-width: 350px) {
-    html {
-        font-size: 6px;
-    }
-}
-
 body {
     font-family: 'Minion Pro', Arial, Helvetica, sans-serif;
     color: white;
@@ -352,6 +346,12 @@ main {
     width: 100%;
     position: relative;
     overflow: hidden;
+}
+
+#ticketBtn {
+    width: 6rem;
+    height: 4rem;
+    cursor: pointer;
 }
 
 .Arrow {
@@ -823,9 +823,10 @@ only screen and (min-width: 1000px) and (hover: none) {
 }
 
 @media only screen and (max-width:1250px) and (hover:none) {
-    header{
+    header {
         padding: 2rem;
     }
+
     .futureMovie-trailer {
         width: 100%;
         height: 40rem;
@@ -858,10 +859,12 @@ footer {
     padding: 8rem 4rem;
     display: flex;
 }
-.footerText{
+
+.footerText {
     width: 100%;
     margin-right: 4rem;
 }
+
 .copyright {
     font-size: 1.8rem;
     text-align: left;
@@ -869,10 +872,11 @@ footer {
     margin-bottom: 3rem;
 }
 
-#map{
+#map {
     height: 40rem;
     width: 100%;
 }
+
 .blue {
     color: #50e1dc;
 }
@@ -886,7 +890,8 @@ footer {
     margin: 3rem 0;
 }
 
-@media only screen and (max-width: 1000px),only screen and (min-width: 1000px) and (hover: none) {
+@media only screen and (max-width: 1000px),
+only screen and (min-width: 1000px) and (hover: none) {
     footer {
         padding: 1rem;
         flex-direction: column;
@@ -897,12 +902,13 @@ footer {
         font-size: 1.9rem;
         margin-bottom: 3rem;
     }
-    .footerText{
+
+    .footerText {
         margin: 0;
     }
 }
 
-.unique{
+.unique {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -910,13 +916,22 @@ footer {
     text-align: center;
     width: 90%;
 }
-#barcode{
+
+#barcode {
     margin-bottom: 2rem;
 }
-.popupOrder-text{
+
+.popupOrder-text {
     color: rgb(211, 211, 211);
 }
+
 .stop-scrolling {
     height: 100%;
     overflow: hidden;
-  }
+}
+
+@media only screen and (max-width: 350px) {
+    html {
+        font-size: 6px;
+    }
+}

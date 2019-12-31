@@ -2,7 +2,17 @@ let ageCost = [],
     dimensionCost = [],
     cardNum = 0,
     cards = 10,
-    total = [];
+    total = [],
+    movement = 48,
+    upperLimit = 0,
+    lowerLimit = -336,
+    distance = 0,
+    // barcode ratio is 1:30
+    barcodeW = 10,
+    barcodeH = 300,
+    ordered = false,
+    barcode = 0,
+    triggerTickedAnim = false;
 
 // *********************** CARD ADDING ******************************
 let fillRandomSeats = () => {
@@ -144,12 +154,13 @@ let DOMselections = {
     'futureTrailers': Array.from(document.querySelectorAll('.futureMovie-trailer')),
     'trendingTrailers': Array.from(document.querySelectorAll('.trendingMovie-trailer')),
     'iframeLoader': document.querySelector('.holds-the-iframe'),
+    'ticketBtn': document.getElementById('ticketBtn'),
 }
 // SCROLLING
-let preventScrolling = ()=>{
+let preventScrolling = () => {
     document.querySelector('body').classList.add('stop-scrolling');
 }
-let resumeScrolling = ()=>{
+let resumeScrolling = () => {
     document.querySelector('body').classList.remove('stop-scrolling');
 }
 // ******************* TICKET ORDERING ***********************
@@ -322,15 +333,6 @@ let selectSeat = (e) => {
     e.target.classList.toggle('selected');
 }
 let order = (e) => {
-    
-    preventScrolling();
-
-    // Show barcode 
-    DOMselections.popupOrder.classList.remove('hide');
-
-    // Occupy chosen seats
-    getCardNum(e, 3);
-
     if (currentCardDOM === undefined || (Array.from(currentCardDOM.querySelectorAll('.time.selected')).length === 0 && Array.from(currentCardDOM.querySelectorAll('.seat.selected')).length === 0)) {
         alert('please select seats and a time');
     } else if (Array.from(currentCardDOM.querySelectorAll('.time.selected')).length === 0) {
@@ -339,6 +341,16 @@ let order = (e) => {
         alert('please select seats');
     } else {
         currentCardDOM.querySelectorAll('.seat.selected').forEach(e => {
+            getCardNum(e, 3);
+
+            // Show barcode 
+            preventScrolling();
+            DOMselections.popupOrder.classList.remove('hide');
+            ordered = true;
+            triggerTickedAnim = true;
+            randomBarcode();
+            displayBarcode();
+            // Occupy chosen seats
             e.classList.remove('selected');
             e.classList.add('taken');
             e.style.background = 'black';
@@ -356,13 +368,6 @@ DOMselections.orderBtn.forEach(e => {
 })
 
 // ************************ SLIDING ***************************
-let movement = 48,
-    upperLimit = 0,
-    lowerLimit = -336,
-    distance = 0,
-    // barcode ratio is 1:30
-    barcodeW = 10,
-    barcodeH = 300;
 
 // Media query break points 
 let media2000 = window.matchMedia('(max-width: 2000px)')
@@ -385,17 +390,17 @@ let checkMedia = () => {
         movement = 48;
         lowerLimit = -432;
         barcodeW = 10,
-        barcodeH = 300;
+            barcodeH = 300;
     } else if (media500.matches) {
         movement = 48;
         lowerLimit = -432;
         barcodeW = 4,
-        barcodeH = 120;
+            barcodeH = 120;
     } else if (media600.matches) {
         movement = 41;
         lowerLimit = -410;
         barcodeW = 5,
-        barcodeH = 150;
+            barcodeH = 150;
     } else if (media865.matches) {
         movement = 65;
         lowerLimit = -390;
@@ -403,17 +408,17 @@ let checkMedia = () => {
         movement = 60;
         lowerLimit = -360;
         barcodeW = 5,
-        barcodeH = 150;
+            barcodeH = 150;
     } else if (media1450.matches) {
         movement = 42;
         lowerLimit = -336;
         barcodeW = 7,
-        barcodeH = 210;
+            barcodeH = 210;
     } else if (media1600.matches) {
         movement = 48;
         lowerLimit = -336;
         barcodeW = 10,
-        barcodeH = 300;
+            barcodeH = 300;
     } else if (media1700.matches) {
         movement = 50;
         lowerLimit = -320;
@@ -434,6 +439,7 @@ let checkMedia = () => {
 
 // Check dimensions of the screen intially to know what device the user is using
 checkMedia();
+
 
 // Adapt everytime screen is resized
 window.addEventListener('resize', () => {
@@ -530,19 +536,51 @@ DOMselections.popupTrailerClose.addEventListener('click', () => {
 
 // Barcode from order popup
 // min pharmacode type barcode value is 1000 in this case and max is 131070
-let randomBarcode = Math.floor(Math.random() * 130071 - 1000);
-JsBarcode("#barcode", `${randomBarcode}`,{
-    format: "pharmacode",
-    lineColor: "#0aa",
-    value: '12345999',
-    width: `${barcodeW}`,
-    height: `${barcodeH}`,
-    displayValue: false,
-    background: 'transparent',
-});
+let randomBarcode = () => {
+    barcode = Math.floor(Math.random() * 130071 - 1000);
+    localStorage.setItem('barcode', barcode);
+    localStorage.setItem('orderedOrNot', true);
+}
+let getData = () => {
+    barcode = localStorage.getItem('barcode');
+    ordered = localStorage.getItem('orderedOrNot');
+}
+// Get data on whether or not there is barcode available 
+getData();
 
+let displayBarcode = () => {
+    JsBarcode("#barcode", `${barcode}`, {
+        format: "pharmacode",
+        lineColor: "#0aa",
+        value: '12345999',
+        width: `${barcodeW}`,
+        height: `${barcodeH}`,
+        displayValue: false,
+        background: 'transparent',
+    });
+}
 // Barcode exit btn click
-DOMselections.popupOrderClose.addEventListener('click', ()=>{
+DOMselections.popupOrderClose.addEventListener('click', () => {
     resumeScrolling();
     DOMselections.popupOrder.classList.add('hide');
+    // only if the trigger is order, ticketBtn plays animation after barcode is updated
+    if (triggerTickedAnim) {
+        // to make the animation play each time new order appears, animation name is removed and added after short delay
+        DOMselections.ticketBtn.classList.remove('animated', 'tada');
+        setTimeout(() => {
+            DOMselections.ticketBtn.classList.add('animated', 'tada');
+        }, 100);
+    }
+})
+
+// ticketBtn show last ordered barcode
+DOMselections.ticketBtn.addEventListener('click', () => {
+    triggerTickedAnim = false;
+    if (ordered) {
+        preventScrolling();
+        DOMselections.popupOrder.classList.remove('hide');
+        displayBarcode();
+    } else {
+        alert('You have not ordered any tickets');
+    }
 })
