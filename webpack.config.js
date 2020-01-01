@@ -8,6 +8,10 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: './js/bundle.js'
     },
+    devServer: {
+        contentBase: './dist',
+        open: 'chrome',
+    },
     plugins: [
         new HtmlWebpackPlugin({
             filename: 'index.html',

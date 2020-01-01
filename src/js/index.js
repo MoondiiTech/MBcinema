@@ -64,9 +64,9 @@ let addCards = () => {
         <div class="card--front side"></div>
         <div class="card--back side">
             <div class="card__heading">
-                <img src="../img/side arrow.svg" alt="" class="leftNav nav">
+                <img src="img/side arrow.svg" alt="" class="leftNav nav">
                 <h4 class="heading-quarternary date">Monday</h4>
-                <img src="../img/side arrow.svg" alt="" class="rightNav nav">
+                <img src="img/side arrow.svg" alt="" class="rightNav nav">
             </div>
             <div class="card__body">
                 <div class="times">
@@ -122,7 +122,7 @@ addCards();
 let addImages = () => {
     let i = 0;
     while (i < cards) {
-        document.querySelectorAll('.card--front')[i].style.backgroundImage = `url(../../img/M_${i}.jpg)`;
+        document.querySelectorAll('.card--front')[i].style.backgroundImage = `url(../img/M_${i}.jpg)`;
         i++;
     }
 }
