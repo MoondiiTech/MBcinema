@@ -10,7 +10,6 @@ module.exports = {
     },
     devServer: {
         contentBase: './dist',
-        open: 'chrome',
     },
     plugins: [
         new HtmlWebpackPlugin({
