@@ -138,8 +138,8 @@ document.querySelectorAll('.date').forEach(e => {
 // DOM should be set up after cards are created since it is referencing card components
 let DOMselections = {
     'main': document.getElementById('main'),
-    'cards': Array.from(document.querySelectorAll('.card')),
-    'cost': Array.from(document.querySelectorAll('.cost')),
+    'cards': document.querySelectorAll('.card'),
+    'cost': document.querySelectorAll('.cost'),
     'orderBtn': document.querySelectorAll('.orderBtn'),
     'leftNav': document.querySelector('.L_Arrow'),
     'rightNav': document.querySelector('.R_Arrow'),
@@ -151,8 +151,8 @@ let DOMselections = {
     'popupOrder': document.querySelector('.popupOrder'),
     'popupOrderClose': document.querySelector('.popupOrderClose'),
     'popupTrailerClose': document.querySelector('.popupTrailerClose'),
-    'futureTrailers': Array.from(document.querySelectorAll('.futureMovie-trailer')),
-    'trendingTrailers': Array.from(document.querySelectorAll('.trendingMovie-trailer')),
+    'futureTrailers': document.querySelectorAll('.futureMovie-trailer'),
+    'trendingTrailers': document.querySelectorAll('.trendingMovie-trailer'),
     'iframeLoader': document.querySelector('.holds-the-iframe'),
     'ticketBtn': document.getElementById('ticketBtn'),
 }
