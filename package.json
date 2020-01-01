@@ -4,7 +4,7 @@
   "description": "mbcinema project",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open chrome",
+    "start": "webpack-dev-server --mode development --open 'Google Chrome'",
     "build": "webpack --mode production"
   },
   "author": "Moondii",
