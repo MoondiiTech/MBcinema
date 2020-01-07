@@ -105,11 +105,11 @@ a {
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
     -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
 }
 
 .leftText {
@@ -137,10 +137,10 @@ a {
     -ms-flex-direction: column;
     flex-direction: column;
     -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
     -ms-flex-pack: distribute;
-    justify-content: space-around;
+        justify-content: space-around;
 }
 
 .redText {
@@ -286,8 +286,8 @@ a {
 
     .trendingTrailers {
         -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center;
+            -ms-flex-pack: center;
+                justify-content: center;
     }
 
     .trendingTrailer {
@@ -306,8 +306,8 @@ a {
         display: flex;
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-        flex-direction: column;
+            -ms-flex-direction: column;
+                flex-direction: column;
         line-height: 80px;
     }
 
@@ -761,7 +761,7 @@ only screen and (min-width:62.5em) and (hover: none) {
 
 .futureMovie:hover {
     -webkit-transform: translateY(-5%);
-    transform: translateY(-5%);
+            transform: translateY(-5%);
 }
 
 .futureMovie__top {
@@ -769,7 +769,7 @@ only screen and (min-width:62.5em) and (hover: none) {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: distribute;
-    justify-content: space-around;
+        justify-content: space-around;
     font-size: 2rem;
     background-color: black;
 }
@@ -783,7 +783,7 @@ only screen and (min-width:62.5em) and (hover: none) {
     top: 50%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
     display: block;
 }
 
@@ -794,7 +794,7 @@ only screen and (min-width:62.5em) and (hover: none) {
     top: 50%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
     -webkit-filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(150deg) brightness(101%) contrast(110%);
     filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(150deg) brightness(101%) contrast(110%);
 }
@@ -821,13 +821,25 @@ only screen and (min-width:62.5em) and (hover: none) {
     top: 50%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
     width: 60vw;
     height: 60vh;
     -webkit-animation: popUp 0.5s 0.2s ease;
-    animation: popUp 0.5s 0.2s ease;
+            animation: popUp 0.5s 0.2s ease;
     -webkit-animation-fill-mode: backwards;
-    animation-fill-mode: backwards;
+            animation-fill-mode: backwards;
+}
+
+@-webkit-keyframes popUp {
+    0% {
+        -webkit-transform: translate(-50%, -50%) scale(0);
+                transform: translate(-50%, -50%) scale(0);
+    }
+
+    100% {
+        -webkit-transform: translate(-50%, -50%) scale(1);
+                transform: translate(-50%, -50%) scale(1);
+    }
 }
 
 @-webkit-keyframes popUp {
@@ -845,12 +857,12 @@ only screen and (min-width:62.5em) and (hover: none) {
 @keyframes popUp {
     0% {
         -webkit-transform: translate(-50%, -50%) scale(0);
-        transform: translate(-50%, -50%) scale(0);
+                transform: translate(-50%, -50%) scale(0);
     }
 
     100% {
         -webkit-transform: translate(-50%, -50%) scale(1);
-        transform: translate(-50%, -50%) scale(1);
+                transform: translate(-50%, -50%) scale(1);
     }
 }
 
@@ -910,8 +922,8 @@ footer {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
     padding: 8rem 4rem;
     display: flex;
 }
@@ -952,8 +964,8 @@ only screen and (min-width:62.5em) and (hover: none) {
         padding: 1rem;
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-        flex-direction: column;
+            -ms-flex-direction: column;
+                flex-direction: column;
     }
 
     .copyright {
@@ -972,7 +984,7 @@ only screen and (min-width:62.5em) and (hover: none) {
     top: 50%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
     text-align: center;
     width: 90%;
 }
