@@ -1,3 +1,7 @@
+import Barcode from './models/Barcode';
+import Cards from './models/Cards';
+import {displayBarcode} from './views/barcodeView';
+import {addCards,addImages} from './views/cardsView';
 let ageCost = [],
     dimensionCost = [],
     cardNum = 0,
@@ -15,118 +19,11 @@ let ageCost = [],
     triggerTickedAnim = false;
 
 // *********************** CARD ADDING ******************************
-let fillRandomSeats = () => {
-    let numSeats = 9,
-        i = 0;
-    let seatHTML = '';
-    while (i < numSeats) {
-        i++;
-        let randSeat = Math.floor(Math.random() * 2);
-        if (randSeat === 0) {
-            seatHTML += `<a href="#" class="seat"></a>`;
-        } else {
-            seatHTML += `<a href="#" class="seat taken"></a>`;
-        }
-    }
-    return seatHTML;
-}
-let randHour = (randTimes) => {
-    let randHours = [];
-    while (randHours.length < 4 + randTimes) {
-        let r = Math.floor(Math.random() * 16 + 7);
-        if (randHours.indexOf(r) === -1) {
-            randHours.push(r);
-        }
-    }
-    randHours.sort((a, b) => a - b);
-    return randHours;
-}
-
-let randMinute = () => {
-    let randMinute = 0;
-    Math.floor(Math.random() * 2) === 0 ? randMinute = 20 : randMinute = 50;
-    return randMinute;
-}
-let addCards = () => {
-    for (let i = 0; i < cards; i++) {
-        let timesHTML = '';
-        let j = 0,
-            randTimes = 0;
-        randTimes = Math.floor(Math.random() * 4 + 1);
-        let randHourArr = randHour(randTimes);
-        while (j < randTimes) {
-            j++;
-            timesHTML += `<a class="time">${randHourArr[j+3]}:${randMinute()}</a>`;
-        }
-
-        let html = `
-        <div class="card card--${i}">
-        <div class="card--front side"></div>
-        <div class="card--back side">
-            <div class="card__heading">
-                <img src="img/side arrow.svg" alt="" class="leftNav nav">
-                <h4 class="heading-quarternary date">Monday</h4>
-                <img src="img/side arrow.svg" alt="" class="rightNav nav">
-            </div>
-            <div class="card__body">
-                <div class="times">
-                    <a class="time">${randHourArr[0]}:${randMinute()}</a>
-                    <a class="time">${randHourArr[1]}:${randMinute()}</a>
-                    <a class="time">${randHourArr[2]}:${randMinute()}</a>
-                    <a class="time">${randHourArr[3]}:${randMinute()}</a>
-                </div>
-                <div class="times">
-                    ${timesHTML}
-                </div>
-                <div class="seats">
-                    <div class="seat-row">
-                        ${fillRandomSeats()}
-                    </div>
-                    <div class="seat-row">
-                        ${fillRandomSeats()}
-                    </div>
-                    <div class="seat-row">
-                        ${fillRandomSeats()}
-                    </div>
-                    <div class="seat-row">
-                        ${fillRandomSeats()}
-                    </div>
-                    <div class="seat-row">
-                        ${fillRandomSeats()}
-                    </div>
-                    <div class="seat-row">
-                        ${fillRandomSeats()}
-                    </div>
-                    <div class="seat-row">
-                        ${fillRandomSeats()}
-                    </div>
-                    <div class="screen"></div>
-                </div>
-                <div action="#" class="specifications">
-                    <a href="#" class="choice dimension twoD">2D</a>
-                    <a href="#" class="choice dimension threeD selected">3D</a>
-                    <a href="#" class="choice age child">Child</a>
-                    <a href="#" class="choice age adult selected">Adult</a>
-                </div>
-                <a href="#" class="orderBtn">Order <span class="cost">$0</span></a>
-            </div>
-        </div>
-    </div>`;
-
-        document.querySelector('.cards').insertAdjacentHTML('beforeend', html);
-    }
-}
-addCards();
+const cardsModule = new Cards();
+addCards(cards,cardsModule.randHour,cardsModule.randMinute,cardsModule.fillRandomSeats);
 
 // Adding images to the cards, must be called after they are created
-let addImages = () => {
-    let i = 0;
-    while (i < cards) {
-        document.querySelectorAll('.card--front')[i].style.backgroundImage = `url(../img/M_${i}.jpg)`;
-        i++;
-    }
-}
-addImages();
+addImages(cards);
 
 // Upper title of the card --> Day is set dynamically
 var today = new Date();
@@ -156,7 +53,16 @@ let DOMselections = {
     'iframeLoader': document.querySelector('.holds-the-iframe'),
     'ticketBtn': document.getElementById('ticketBtn'),
 }
-// SCROLLING
+
+// BARCODE ********************************
+const barcodeModule = new Barcode(ordered, barcode);
+barcodeModule.getData();
+barcodeModule.randomBarcode();
+barcode = barcodeModule.barcode;
+ordered = barcodeModule.ordered;
+displayBarcode(barcode,barcodeW,barcodeH);
+
+// SCROLLING ******************************
 let preventScrolling = () => {
     document.querySelector('body').classList.add('stop-scrolling');
 }
@@ -332,7 +238,7 @@ let selectSeat = (e) => {
     }
     e.target.classList.toggle('selected');
 }
-let order = (e) => {
+let order = () => {
     if (currentCardDOM === undefined || (Array.from(currentCardDOM.querySelectorAll('.time.selected')).length === 0 && Array.from(currentCardDOM.querySelectorAll('.seat.selected')).length === 0)) {
         alert('please select seats and a time');
     } else if (Array.from(currentCardDOM.querySelectorAll('.time.selected')).length === 0) {
@@ -348,8 +254,8 @@ let order = (e) => {
             DOMselections.popupOrder.classList.remove('hide');
             ordered = true;
             triggerTickedAnim = true;
-            randomBarcode();
-            displayBarcode();
+            barcodeModule.randomBarcode();
+            displayBarcode(barcode,barcodeW,barcodeH);
             // Occupy chosen seats
             e.classList.remove('selected');
             e.classList.add('taken');
@@ -363,7 +269,7 @@ let order = (e) => {
 DOMselections.orderBtn.forEach(e => {
     e.addEventListener('click', (e) => {
         e.preventDefault();
-        order(e.target);
+        order();
     })
 })
 
@@ -534,31 +440,6 @@ DOMselections.popupTrailerClose.addEventListener('click', () => {
     }
 })
 
-// Barcode from order popup
-// min pharmacode type barcode value is 1000 in this case and max is 131070
-let randomBarcode = () => {
-    barcode = Math.floor(Math.random() * 130071 - 1000);
-    localStorage.setItem('barcode', barcode);
-    localStorage.setItem('orderedOrNot', true);
-}
-let getData = () => {
-    barcode = localStorage.getItem('barcode');
-    ordered = localStorage.getItem('orderedOrNot');
-}
-// Get data on whether or not there is barcode available 
-getData();
-
-let displayBarcode = () => {
-    JsBarcode("#barcode", `${barcode}`, {
-        format: "pharmacode",
-        lineColor: "#0aa",
-        value: '12345999',
-        width: `${barcodeW}`,
-        height: `${barcodeH}`,
-        displayValue: false,
-        background: 'transparent',
-    });
-}
 // Barcode exit btn click
 DOMselections.popupOrderClose.addEventListener('click', () => {
     resumeScrolling();
@@ -579,7 +460,7 @@ DOMselections.ticketBtn.addEventListener('click', () => {
     if (ordered) {
         preventScrolling();
         DOMselections.popupOrder.classList.remove('hide');
-        displayBarcode();
+        displayBarcode(barcode,barcodeW,barcodeH);
     } else {
         alert('You have not ordered any tickets');
     }
