@@ -780,90 +780,66 @@ main {
 
 .futureMovies {
   display: grid;
-  grid-gap: 2rem;
-  grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(30rem, 1fr)
+  ); /* Adjusts number of columns based on the screen width */
+  gap: 2rem;
   margin-top: 5rem;
   position: relative;
 }
 
-.futureMovie--0 {
-  background: -webkit-gradient(
-      linear,
-      left bottom,
-      left top,
-      from(rgba(0, 0, 0, 0.4)),
-      to(rgba(0, 0, 0, 0.4))
-    ),
-    url("../img/F_0.jpg") no-repeat;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("../img/F_0.jpg") no-repeat;
-}
-
-.futureMovie--1 {
-  background: -webkit-gradient(
-      linear,
-      left bottom,
-      left top,
-      from(rgba(0, 0, 0, 0.4)),
-      to(rgba(0, 0, 0, 0.4))
-    ),
-    url("../img/F_1.jpg") no-repeat;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("../img/F_1.jpg") no-repeat;
-}
-
-.futureMovie--2 {
-  background: -webkit-gradient(
-      linear,
-      left bottom,
-      left top,
-      from(rgba(0, 0, 0, 0.4)),
-      to(rgba(0, 0, 0, 0.4))
-    ),
-    url("../img/F_2.jpg") no-repeat;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("../img/F_2.jpg") no-repeat;
-}
-
-.futureMovie--3 {
-  background: -webkit-gradient(
-      linear,
-      left bottom,
-      left top,
-      from(rgba(0, 0, 0, 0.4)),
-      to(rgba(0, 0, 0, 0.4))
-    ),
-    url("../img/F_3.jpg") no-repeat;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("../img/F_3.jpg") no-repeat;
-}
-
 .futureMovie {
   height: 50rem;
-  width: auto;
-  background-size: cover;
-  background-position: top;
   cursor: pointer;
   position: relative;
-  -webkit-box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-  -webkit-transition: all 0.5s;
   transition: all 0.5s;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .futureMovie:hover {
-  -webkit-transform: translateY(-5%);
   transform: translateY(-5%);
 }
 
 .futureMovie__top {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
   justify-content: space-around;
   font-size: 2rem;
   background-color: black;
+}
+.futureMovie--0 {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("../img/F_0.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.futureMovie--1 {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("../img/F_1.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.futureMovie--2 {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("../img/F_2.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.futureMovie--3 {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("../img/F_3.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .holds-the-iframe {
